@@ -18,7 +18,9 @@
 # widgets = interation to things
 # layouts control the position of the widgets
 # you add widgets to layout and change the layouts as you go
-# 
+#
+# a signal activates a slot (its a button that activates a method)
+# Slots and Signals should be on the same class for simplicity
 #
 #
 
