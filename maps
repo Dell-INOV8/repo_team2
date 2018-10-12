@@ -84,7 +84,7 @@ def main():
     print()
 
     date = input("What is the date today? [Format - dd/mm/yyyy] ")
-    ciy_date = input("Which city are you in today? ")
+    ciy_date = input("Which City are you in today? ")
     events_today(date, city)
     print()
 
