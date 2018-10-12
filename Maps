@@ -1,0 +1,94 @@
+#we can have a list of cities - can add to the list in the future
+import random
+clist = ["Houston", "Dallas", "Austin", "El Paso", "San Antonio", "Lubbock", "Amrillo", "Laredo"]
+
+#dictionary of events across various cities 
+events_dict = {}
+events_dict["Houston"] = [['Career_Fair','10/10/2016', "Work"],['Sporting_Event','1/11/2015', "Sports"],['Dell_Tour', '3/4/2014', "Work"]]
+events_dict["Dallas"] = [['Cliff_Diving','30/4/2009', 'Sports'], ['Pet_a_Pup','5/5/2010', "Fun"], ['Hackathon', '4/5/2014',"Fun"]]
+events_dict["Austin"] = [['Free_Hot_Chocolate','4/5/2000','Fun'],['Networking', '8/9/2012', "Work"],['Dell_Tour', '4/8/2017', 'Work']]
+events_dict["El Paso"] = [['Cliff_Diving','5/6/2009', 'Fun'],['Sporting_Event','6/7/2013', 'Sports'],['Hackathon', '5/10/2018','Fun']]
+events_dict["San Antonio"] = [['Free_Hot_Chocolate','4/5/2003', 'Fun'],['Pet_a_Pup', '6/7/2010', 'Fun'],['Hackathon 4/8/2012', 'Work']]
+events_dict["Lubbock"] = [['Free_Hot_Chocolate','5/6/2005', 'Fun'],['Disco', '4/7/2016', 'Dance'], ['Food_Tour','30/4/2006', 'Food']]
+events_dict["Amrillo"] = [['Dell_101','4/5/2006', 'Work'], ['Sporting_Event','7/4/2010', 'Sports'],['Dell_Tour','5/6/2008', 'Work']]
+events_dict["Laredo"] = [['Dell_101', '4/5/2013', 'Work'],['Pet_a_Pup','6/10/2009', 'Fun'],['Hackathon', '5/07/2007', 'Work']]
+
+
+#what city did user enter 
+def which_city(city):
+   print("Events in cities near you: ")
+   list_of_events = events_dict[city]
+   for j in range(len(list_of_events)):
+     event_info = list_of_events[j]
+     #print(event_info)
+     #event_info = event_info.split()
+     print( "Event date: ", event_info[1],";", "Event Name:", event_info[0],";", "Category: ", event_info[2])
+
+      
+
+#add city to the dictionary       
+def add_city(city):
+   global events_dict 
+   keys = list(events_dict.keys())
+   if(city in keys):
+     print("City already exists. The events are: ",events_dict[city])
+   else:
+     events_dict[city] = []
+     #print(events_dict) #to check if the city is added 
+    
+#add an event to a particular city 
+def add_event(event,city):
+   global events_dict
+   keys = list(events_dict.keys())
+   if(city not in keys):
+       return("City not in the list. Go ahead and add the city in the list!")
+   else:
+       events_dict[city].append(event)
+   #return events_dict #to check if event is correctly added 
+
+#check for events today 
+def events_today(date, city):
+   print("The list of events today is: ", end = "")
+   list_of_events = events_dict[city]
+   for i in range(len(list_of_events)):
+     if(date == list_of_events[i][1]):
+        print(list_of_events[i][0])
+        return
+   print("No events")
+   
+
+#check by category
+def categories(category):
+  value_list = list(events_dict.values())
+  print("The events in the category -", category, "are : ")
+  event_list = [] 
+  for i in range(len(value_list)):
+     for j in range(len(value_list[i])):
+       for k in range(len(value_list[i][j])):
+         if(value_list[i][j][k] == category):
+            print("Event Name: ", value_list[i][j][0],"and  Event Date :", value_list[i][j][1])
+
+      
+def main(): 
+    city = input("Which city are you searching for events in? ")
+    which_city(city)
+    print()
+
+    add = input("add a city: ")
+    add_city(add)
+    print()
+
+    event_name = input("Add an event: ")
+    city_name = input("Which city is the event in? ")
+    add_event(event_name,city_name)
+    print()
+
+    date = input("What is the date today? [Format - dd/mm/yyyy] ")
+    ciy_date = input("Which city are you in today? ")
+    events_today(date, city)
+    print()
+
+    category = input("Which category are you interested in? ")
+    categories(category)
+    print()
+main()
