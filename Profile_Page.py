@@ -1,4 +1,6 @@
 
+profileList = []
+
 class profileHolder(object):
     def __init__(self, nameofguy, location, dateofbirth, jobtitle, email, password, bio, skills, skillsEndoresed):
         self.nameofguy = "nameholder"
@@ -81,27 +83,53 @@ def enterEndoresedSkills(profileHolder):
 def getEndorsedSkills(profileHolder):
     print(profileHolder.skillsEndoresed)
 
-def createProfile(profileList):
 
-    NumProf = len(profileList)
-    
+
+#this function should return an object, it does not seem to be doing so.
+def createProfile(profileList):
 
     profileHolder.nameofguy = input("please enter your name")
     profileHolder.location = input("Please enter where you are located")
     profileHolder.dateofbirth = input("Please enter your date of birth")
     profileHolder.jobtitle = input("Please enter your Job Title")
     profileHolder.email = input("Please enter your email address")
+    profileHolder.password = input("Please enter your password")
+    profileHolder.bio = input("Please enter a short bio")
+#skills entry
+    numSkills = 0
+    skills = []
+    numSkills = int(input("Please enter the number of skills you wish to add"))
 
+    for x in range(0, numSkills):
+        skills.append(input("enter skill " + str(x)))
+
+    profileHolder.skills = skills
+#endoresed skills entry
+    skillsEndorsed = []
+    currentSkills = profileHolder.skills
+
+    print(currentSkills)
+    numSkillsToEndorse = int(input("Please enter the number of skills from above you wish to endorse"))
+
+    for x in range(0, numSkillsToEndorse):
+        skillsEndorsed.append(input("skill " + str(x) + " to endorse"))
+
+    profileHolder.skillsEndoresed = skillsEndorsed
+
+    return
 
 def main():
 
-    profileList = []
     instance1 = profileHolder("joe", "someplace", "1AD", "The CEO GUY", "thatemailthing", "1234", "I am a fantastic bossman", ["sleeping", "Jaywalking", "living"], ["sleeping"])
     instance2 = profileHolder("1", "middleEarth", "now", "ringGuy", "postalBird1", "ruleThemAll", "I walk far", ["running away", "having no char development"], ["having now char development"])
 
     profileList.append(instance1)
     profileList.append(instance2)
 
+    instance3 = createProfile(profileHolder)
+    print(instance3)
+    #I do not know if this list of objects is working correctly, I can not get it to print right
+    profileList.append(instance3)
 main()
 
 
